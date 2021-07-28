@@ -106,13 +106,13 @@ function App() {
 
   const btnJogar = (jogador: number): JSX.Element => {
     return (
-      <button style={{ background: jogador === 0 ? 'black' : 'red', color: jogador === 0 ? 'white' : 'black' }} onClick={() => jogar(jogador)}>jogar</button>
+      <button onClick={() => jogar(jogador)}>jogar</button>
     );
   }
 
   const btnParar = (jogador: number): JSX.Element => {
     return (
-      <button style={{ background: jogador === 0 ? 'black' : 'red', color: jogador === 0 ? 'white' : 'black' }} onClick={() => parar(jogador)}>parar</button>
+      <button onClick={() => parar(jogador)}>parar</button>
     );
   }
 
@@ -152,14 +152,73 @@ function App() {
 
   return (
     <div className="App">
-      <div className="parent-btn">
+      <div className="divjogo">
+        <div className="player">
+          <div className="playerdiv">
+            <div className="placar">
+              <div className="container-placar">
+                <div className="placar-nome">
+                  <span>Jogador 1</span>
+                </div>
+                <div className="placar-vitorias">
+                  <span>{jogadores[0]?.vitorias}</span>
+                </div>
+              </div>
+              <div className="divbotoes">
+                {btnJogar(0)}
+                {btnParar(0)}
+              </div>
+            </div>
+            <div className="divcartas">
+              {mostrarCartasp1()}
+            </div>
+            <div className="divpontuacao">
+              <label>
+                {jogadores[0]?.pontuacao}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="player">
+          <div className="playerdiv">
+            <div className="placar">
+              <div className="container-placar">
+                <div className="placar-nome">
+                  <span>Jogador 2</span>
+                </div>
+                <div className="placar-vitorias">
+                  <span>{jogadores[1]?.vitorias}</span>
+                </div>
+              </div>
+              <div className="divbotoes">
+                {btnJogar(1)}
+                {btnParar(1)}
+              </div>
+            </div>
+            <div className="divcartas">
+              {mostrarCartasp2()}
+            </div>
+            <div className="divpontuacao">
+              <label>
+                {jogadores[1]?.pontuacao}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="divtexto">
+
+      </div>
+
+
+      {/* <div className="parent-btn">
         <div className="div1-btn" style={{ opacity: jogadorDaVez === 0 ? '1' : '0.4', pointerEvents: jogadorDaVez === 0 ? 'all' : 'none' }}>
-          <div className="vezTexto" style={{ background: 'black', color: 'white' }}><label>Jogador 1</label></div>
+          <div className="vezTexto"><label>Jogador 1</label></div>
           {btnJogar(0)}
           {btnParar(0)}
         </div>
         <div className="div3-btn" style={{ opacity: jogadorDaVez === 1 ? '1' : '0.4', pointerEvents: jogadorDaVez === 1 ? 'all' : 'none' }}>
-          <div className="vezTexto" style={{ background: 'red' }}><label>Jogador 2</label></div>
+          <div className="vezTexto"><label>Jogador 2</label></div>
           {btnJogar(1)}
           {btnParar(1)}
         </div>
@@ -175,18 +234,9 @@ function App() {
       <div className="pontuacao">
         <label>JOGADOR 1: <label style={{ color: "red", fontSize: 'large', padding: '1rem' }}>{jogadores[0]?.pontuacao}</label></label>
         <label>JOGADOR 2: <label style={{ color: "red", fontSize: 'large', padding: '1rem' }}>{jogadores[1]?.pontuacao}</label></label>
-      </div>
+      </div> */}
 
-      {/* <figure>
-        <audio
-          controls
-          loop
-          autoPlay
-          src="https://r5---sn-bg07dn6k.googlevideo.com/videoplayback?expire=1627013687&ei=1-35YJiEL4jK1wKHjI-oBw&ip=5.178.34.250&id=o-AO_EGP1j3Y5DTz30Z_kAOZ7hppQn_YUwX23VU9RroSuD&itag=18&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=sCkxh7P6suItK1WtlnGzICIG&gir=yes&clen=175776058&ratebypass=yes&dur=3866.377&lmt=1538856315965172&fexp=24001373,24007246&c=WEB&txp=5531432&n=GBn-l41DKOl1q1XxW44&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgNpWX0GFY2QBWrKkCfpXoJOKwrvyrvNCczODcScYAZqECIB8qOZEsUhK6KFdiFp_tQ0H0VX3-Nl4w4U3TMa2Bv8Jk&rm=sn-5hnel676&req_id=7e1577a2659ca3ee&ipbypass=yes&redirect_counter=2&cm2rm=sn-8p8v-bg0se6&cms_redirect=yes&mh=mb&mip=2804:431:cff2:60f0:9d1d:97fc:b965:d054&mm=29&mn=sn-bg07dn6k&ms=rdu&mt=1626991998&mv=m&mvi=5&pl=49&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhAPSBwZ5fEzxv5SRTKtNxfIPYqxarH2jcCoGmj03M_6e0AiArxzUHwTebOiz0oN6QKxxedc5B8wZ53qnMuDGwxipwXA%3D%3D">
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
-      </figure> */}
+
 
 
       {/* <div className="parent-placar">
