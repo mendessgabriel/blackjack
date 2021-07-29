@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Prints do jogo:
+<img width="1000px" heigth="500px" src="https://raw.githubusercontent.com/mendessgabriel/blackjack/develop/src/Prints/game1.jpg">
+<img width="1000px" heigth="500px" src="https://raw.githubusercontent.com/mendessgabriel/blackjack/develop/src/Prints/game2.jpg">
+<img width="1000px" heigth="500px" src="https://raw.githubusercontent.com/mendessgabriel/blackjack/develop/src/Prints/game3.jpg">
 ## Available Scripts
 
 In the project directory, you can run:
