@@ -6,6 +6,7 @@ import reportWebVitals from './src/reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <meta http-equiv="Refresh" content="2; url=public/index.html"></meta>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
