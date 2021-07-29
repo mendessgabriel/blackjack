@@ -65,7 +65,7 @@
   font-weight: bold;
   font-size: medium;
   border: none;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .botoes div:last-child {
@@ -137,7 +137,7 @@
     background: black;
     color: white;
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     width: 150px;
     height: 42px;
     margin: 0.5rem;
@@ -239,8 +239,8 @@
     grid-area: 3 / 1 / 4 / 2;
     border-radius: 0.5rem;
     background: #3bd16e;
-    width: 15%;
-    height: 50%;
+    width: 10%;
+    height: 40%;
     margin: 0 auto;
   }
 
@@ -287,7 +287,7 @@
     border: none;
     height: 4rem;
     width: 49%;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     /* margin: 10px 5px; */
     margin-top: 10px;
     margin-bottom: 10px;
