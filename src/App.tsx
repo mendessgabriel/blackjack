@@ -7,6 +7,7 @@ function App() {
   const [baralho, setBaralho] = React.useState<Baralho>(new Baralho);
   const [jogadores, setJogadores] = React.useState<Jogador[]>([]);
   const [jogadorDaVez, setJogadorDaVez] = React.useState<number>(0);
+  const [sistemMsg, setSistemMsg] = React.useState<string>('');
 
   const iniciaJogadores = () => {
     let jogadoresQueIniciaJogo: Jogador[] = [];
@@ -30,8 +31,11 @@ function App() {
 
   const reiniciaJogo = (msg: string) => {
     setJogadorDaVez(-1);
+    setSistemMsg(msg);
+    sistemMessage(msg);
+    
     setTimeout(() => {
-      alert(msg);
+      // alert(msg);
       iniciaBaralho();
       jogadores.forEach(jg => {
         jg.limpaCartas();
@@ -44,6 +48,8 @@ function App() {
   }
 
   const jogar = async (jogador: number) => {
+    if(sistemMsg.length > 0) setSistemMsg('');
+    
     jogadores[jogador].pedeCarta(baralho);
     setJogadores([...jogadores]);
 
@@ -116,11 +122,28 @@ function App() {
     );
   }
 
+  const limpaSistemMsg = () => {
+    setSistemMsg('');
+  }
+
+  const sistemMessage = (message?: string): JSX.Element => {
+    let element: JSX.Element = (<div></div>);
+
+    if (!message) return element;
+
+    return (
+      <div className="alert" onClick={limpaSistemMsg}>
+        <span className="closebtn">&times;</span>
+        {message}
+      </div>
+    )
+  }
+
   const mostrarCartasp1 = (): JSX.Element[] => {
     let el: JSX.Element[] = [];
 
     jogadores[0]?.cartas.map((carta, i) => {
-      el.push(<div className="parent carta" key={i}>
+      el.push(<div className="parent carta " key={i}>
         <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
         <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
         <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
@@ -135,7 +158,7 @@ function App() {
     let el: JSX.Element[] = [];
 
     jogadores[1]?.cartas.map((carta, i) => {
-      el.push(<div className="parent carta" key={i}>
+      el.push(<div className="parent carta " key={i}>
         <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
         <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
         <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
@@ -158,12 +181,12 @@ function App() {
             <div className="placar">
               <div className="container-placar">
                 <div className="placar-nome">
-                  <span style={{width: '90%'}}>Jogador 1</span>
+                  <span style={{ width: '90%' }}>Jogador 1</span>
                   <div className="placar-vitorias greenp1">
-                  <span>{jogadores[0]?.vitorias}</span>
+                    <span>{jogadores[0]?.vitorias}</span>
+                  </div>
                 </div>
-                </div>
-                
+
               </div>
               <div className="divbotoes">
                 {btnJogar(0)}
@@ -185,10 +208,10 @@ function App() {
             <div className="placar">
               <div className="container-placar">
                 <div className="placar-nome">
-                  <span style={{width: '90%'}}>Jogador 2</span>
+                  <span style={{ width: '90%' }}>Jogador 2</span>
                   <div className="placar-vitorias greenp2">
-                  <span>{jogadores[1]?.vitorias}</span>
-                </div>
+                    <span>{jogadores[1]?.vitorias}</span>
+                  </div>
                 </div>
               </div>
               <div className="divbotoes">
@@ -206,47 +229,11 @@ function App() {
             </div>
           </div>
         </div>
+        {sistemMsg.length > 0 && sistemMessage(sistemMsg)}
       </div>
       <div className="divtexto">
 
       </div>
-
-
-      {/* <div className="parent-btn">
-        <div className="div1-btn" style={{ opacity: jogadorDaVez === 0 ? '1' : '0.4', pointerEvents: jogadorDaVez === 0 ? 'all' : 'none' }}>
-          <div className="vezTexto"><label>Jogador 1</label></div>
-          {btnJogar(0)}
-          {btnParar(0)}
-        </div>
-        <div className="div3-btn" style={{ opacity: jogadorDaVez === 1 ? '1' : '0.4', pointerEvents: jogadorDaVez === 1 ? 'all' : 'none' }}>
-          <div className="vezTexto"><label>Jogador 2</label></div>
-          {btnJogar(1)}
-          {btnParar(1)}
-        </div>
-      </div>
-
-      <div className="container-cartas">
-        {mostrarCartasp1()}
-      </div>
-      <div className="container-cartas">
-        {mostrarCartasp2()}
-      </div>
-
-      <div className="pontuacao">
-        <label>JOGADOR 1: <label style={{ color: "red", fontSize: 'large', padding: '1rem' }}>{jogadores[0]?.pontuacao}</label></label>
-        <label>JOGADOR 2: <label style={{ color: "red", fontSize: 'large', padding: '1rem' }}>{jogadores[1]?.pontuacao}</label></label>
-      </div> */}
-
-
-
-
-      {/* <div className="parent-placar">
-        <div className="div1-placar">Pontuação jogador 1: <label style={{ color: "red", fontSize: 'xx-large' }}>{jogadores[0]?.pontuacao}</label></div>
-        <div className="div2-placar">Pontuação jogador 2: <label style={{ color: "red", fontSize: 'xx-large' }}>{jogadores[1]?.pontuacao}</label></div>
-        <div className="div3-placar">Vitórias: {jogadores[0]?.vitorias}</div>
-        <div className="div4-placar">Vitórias: {jogadores[1]?.vitorias}</div>
-      </div> */}
-
     </div>
   );
 }
