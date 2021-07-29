@@ -106,13 +106,13 @@ function App() {
 
   const btnJogar = (jogador: number): JSX.Element => {
     return (
-      <button onClick={() => jogar(jogador)}>jogar</button>
+      <button onClick={() => jogar(jogador)}>Jogar!</button>
     );
   }
 
   const btnParar = (jogador: number): JSX.Element => {
     return (
-      <button onClick={() => parar(jogador)}>parar</button>
+      <button onClick={() => parar(jogador)}>Parar!</button>
     );
   }
 
@@ -154,15 +154,16 @@ function App() {
     <div className="App">
       <div className="divjogo">
         <div className="player">
-          <div className="playerdiv">
+          <div className="playerdiv" style={{ opacity: jogadorDaVez === 0 ? '1' : '0.4', pointerEvents: jogadorDaVez === 0 ? 'all' : 'none' }}>
             <div className="placar">
               <div className="container-placar">
                 <div className="placar-nome">
-                  <span>Jogador 1</span>
-                </div>
-                <div className="placar-vitorias">
+                  <span style={{width: '90%'}}>Jogador 1</span>
+                  <div className="placar-vitorias greenp1">
                   <span>{jogadores[0]?.vitorias}</span>
                 </div>
+                </div>
+                
               </div>
               <div className="divbotoes">
                 {btnJogar(0)}
@@ -180,14 +181,14 @@ function App() {
           </div>
         </div>
         <div className="player">
-          <div className="playerdiv">
+          <div className="playerdiv" style={{ opacity: jogadorDaVez === 1 ? '1' : '0.4', pointerEvents: jogadorDaVez === 1 ? 'all' : 'none' }}>
             <div className="placar">
               <div className="container-placar">
                 <div className="placar-nome">
-                  <span>Jogador 2</span>
-                </div>
-                <div className="placar-vitorias">
+                  <span style={{width: '90%'}}>Jogador 2</span>
+                  <div className="placar-vitorias greenp2">
                   <span>{jogadores[1]?.vitorias}</span>
+                </div>
                 </div>
               </div>
               <div className="divbotoes">
@@ -198,7 +199,7 @@ function App() {
             <div className="divcartas">
               {mostrarCartasp2()}
             </div>
-            <div className="divpontuacao">
+            <div className="divpontuacao greenp2">
               <label>
                 {jogadores[1]?.pontuacao}
               </label>
