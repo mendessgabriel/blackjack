@@ -43,7 +43,7 @@ class Baralho {
     }
 
     removeCarta(carta: Carta) {
-        this.cartas = this.cartas.filter(ca => ca != carta);
+        this.cartas = this.cartas.filter(ca => ca !== carta);
     }
 
     retornaCarta = (): Carta => {

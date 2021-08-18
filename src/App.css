@@ -290,9 +290,9 @@
     height: 50px;
   }
 
-  .container-placar span {
-    /* position: relative;
-    top: 10px; */
+  @keyframes btnAnimation {
+    from {transform: scale(1);}
+    to {transform: scale(1);}
   }
 
   .divbotoes button{
@@ -318,6 +318,10 @@
   .divbotoes button:last-child{
     background: #0e631b;
     margin-left: 5px;
+  }
+
+  .divbotoes button:active {
+    transform: translateY(4px);
   }
 
   /* .divbotoes {

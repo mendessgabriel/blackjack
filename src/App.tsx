@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Baralho from './Baralho/Baralho';
 import Jogador from './Jogador/Jogador';
+import SystemMessage from './System/SystemMessage';
+
+import Tilt from 'react-parallax-tilt';
 
 function App() {
-  const [baralho, setBaralho] = React.useState<Baralho>(new Baralho);
+  const [baralho, setBaralho] = React.useState<Baralho>(new Baralho());
   const [jogadores, setJogadores] = React.useState<Jogador[]>([]);
   const [jogadorDaVez, setJogadorDaVez] = React.useState<number>(0);
   const [sistemMsg, setSistemMsg] = React.useState<string>('');
@@ -32,10 +35,8 @@ function App() {
   const reiniciaJogo = (msg: string) => {
     setJogadorDaVez(-1);
     setSistemMsg(msg);
-    sistemMessage(msg);
-    
+
     setTimeout(() => {
-      // alert(msg);
       iniciaBaralho();
       jogadores.forEach(jg => {
         jg.limpaCartas();
@@ -48,8 +49,8 @@ function App() {
   }
 
   const jogar = async (jogador: number) => {
-    if(sistemMsg.length > 0) setSistemMsg('');
-    
+    if (sistemMsg.length > 0) setSistemMsg('');
+
     jogadores[jogador].pedeCarta(baralho);
     setJogadores([...jogadores]);
 
@@ -126,28 +127,19 @@ function App() {
     setSistemMsg('');
   }
 
-  const sistemMessage = (message?: string): JSX.Element => {
-    let element: JSX.Element = (<div></div>);
-
-    if (!message) return element;
-
-    return (
-      <div className="alert" onClick={limpaSistemMsg}>
-        <span className="closebtn">&times;</span>
-        {message}
-      </div>
-    )
-  }
-
   const mostrarCartasp1 = (): JSX.Element[] => {
     let el: JSX.Element[] = [];
 
     jogadores[0]?.cartas.map((carta, i) => {
-      el.push(<div className="parent carta " key={i}>
-        <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
-        <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
-        <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
-      </div >)
+      return el.push(
+        <Tilt key={i}
+          scale={1.15}>
+          <div className="parent carta">
+            <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
+            <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
+            <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
+          </div >
+        </Tilt>)
 
     })
 
@@ -158,11 +150,15 @@ function App() {
     let el: JSX.Element[] = [];
 
     jogadores[1]?.cartas.map((carta, i) => {
-      el.push(<div className="parent carta " key={i}>
-        <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
-        <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
-        <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
-      </div >)
+      return el.push(
+        <Tilt key={i}
+          scale={1.15}>
+          <div className="parent carta ">
+            <div className="div1" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b></div>
+            <div className="div2" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.naipe === 'paus' ? '♣' : carta.naipe === 'copas' ? '♥' : carta.naipe === 'espadas' ? '♠' : '♦'}</b></div>
+            <div className="div3" style={{ color: carta.naipe === 'paus' ? 'black' : carta.naipe === 'copas' ? 'red' : carta.naipe === 'espadas' ? 'black' : 'red' }}><b>{carta.numero}</b> </div>
+          </div >
+        </Tilt>)
     })
 
     return el;
@@ -229,7 +225,7 @@ function App() {
             </div>
           </div>
         </div>
-        {sistemMsg.length > 0 && sistemMessage(sistemMsg)}
+        {sistemMsg.length > 0 && SystemMessage(limpaSistemMsg, sistemMsg)}
       </div>
       <div className="divtexto">
 
