@@ -24,12 +24,11 @@ function App() {
     console.log('Jogadores: ', jogadoresQueIniciaJogo);
   }
 
-  const iniciaBaralho = () => {
+  const iniciaBaralho = async () => {
     let baralhoQueIniciaJogo = new Baralho();
-    baralhoQueIniciaJogo.iniciaBaralho();
+    await baralhoQueIniciaJogo.iniciaBaralho();
 
     setBaralho(baralhoQueIniciaJogo);
-    console.log('Baralho: ', baralhoQueIniciaJogo.cartas);
   }
 
   const reiniciaJogo = (msg: string) => {

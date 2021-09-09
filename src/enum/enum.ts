@@ -1,10 +1,3 @@
-export enum naipes {
-    zap = 0,
-    copas = 1,
-    espadilha = 2,
-    picaFumo = 3
-}
-
 export enum valoresCartas {
     A = 1,
     dois = 2,
